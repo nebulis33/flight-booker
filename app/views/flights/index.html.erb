@@ -1,0 +1,19 @@
+<%= form_with url: flights_path, method: "get" do %>
+    Select your origin city:
+    <%= select_tag(:from_airport, options_for_select(@airport_options)) %>
+    <br>
+    Select your destination:
+    <%= select_tag(:to_airport, options_for_select(@airport_options)) %>
+    <br>
+    Number of passengers:
+    <%= select_tag(:passenger_count, options_for_select((1..4))) %>
+    <br>
+    Departure date:
+    <%= select_tag(:date, options_for_select(@days)) %>
+    <br>
+    <%= submit_tag "Search" %>
+<% end %>
+
+<% if @flights.any? %>
+    <%= @flights %>
+<% end %>
