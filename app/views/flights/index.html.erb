@@ -1,4 +1,4 @@
-<%= form_with url: flights_path, method: "get" do %>
+<%= form_with url: flights_path, local: true, method: "get" do %>
     Select your origin city:
     <%= select_tag(:from_airport, options_for_select(@airport_options)) %>
     <br>
@@ -15,5 +15,8 @@
 <% end %>
 
 <% if @flights.any? %>
+Open Flights:
     <%= @flights %>
+<% else %>
+    Sorry, no flights match your search.
 <% end %>
