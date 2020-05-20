@@ -14,5 +14,7 @@ class FlightsController < ApplicationController
         def sanitize_params
             @departure = params[:from_airport].to_i
             @arrival = params[:to_airport].to_i
+            #@date = params[:date] ## need to figure out how to use datetime in search
+            @passengers = params[:passenger_count].to_i
         end
 end

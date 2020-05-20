@@ -14,9 +14,19 @@
     <%= submit_tag "Search" %>
 <% end %>
 
+
 <% if @flights.any? %>
 Open Flights:
-    <%= @flights %>
+    <%= form_with url: flights_path, local: true, method: "get" do %>
+        <% @flights.each do |f| %>
+            <%= radio_button_tag(:flight, "id") %>
+            <%= label_tag(:flight_id, "Flight #{f}") %>
+            <br>
+        <% end %>
+        <%= hidden_field :num_passengers %>
+        <%= hidden_field_tag "selected", "none" %>
+        <%= submit_tag "Choose" %>
+    <% end %>
 <% else %>
     Sorry, no flights match your search.
 <% end %>
