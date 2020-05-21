@@ -1,0 +1,26 @@
+<h1>Your Booking:</h1>
+<br>
+
+Flight ID: <%= @flight.id %>
+<br>
+Departure: <%= @flight.start_datetime %> from <%= @flight.from_airport.airport_code %>
+<br>
+Arrival: <%= @flight.end_datetime %> at <%= @flight.to_airport.airport_code %>
+
+<h1>Passengers:</h1>
+<p>Please fill out the following information for each passenger in this booking.</p>
+
+
+<%= form_with model: @booking, url: bookings_path, local: true do |f| %>
+	<%= f.fields_for :passengers do |passenger_form| %>
+		Passenger<br>
+		<%= passenger_form.label :name %>
+		<%= passenger_form.text_field :name, placeholder: 'Name' %><br>
+
+		<%= passenger_form.label :email %>
+		<%= passenger_form.text_field :email, placeholder: 'Email' %><br>
+	<% end %>
+
+	<%= f.hidden_field :flight_id, value: @flight.id %>
+	<%= f.submit 'Submit' %>
+<% end %>

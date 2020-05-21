@@ -1,0 +1,15 @@
+<h3>Thank you for booking! Here is your confirmation for your records:</h3>
+
+<p>Booking number: <%= @booking.id %></p>
+<h4>Flight Info:</h4>
+<p>Departing from <%= @flight.to_airport.airport_code %> on <%= @flight.start_datetime %></p> <%# law of demeter violation? %>
+<p>Arriving at <%= @flight.from_airport.airport_code %> on <%= @flight.end_datetime %></p>
+<p>Total flight time is <%= @flight.flight_duration %></p>
+<p><% @passengers.each do |p| %>
+    Passenger Name: <%= p.name %>
+    <br>
+    Passenger Email: <%= p.email %>
+    <br>
+    <br>
+<% end %>
+</p>

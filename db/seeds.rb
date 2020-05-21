@@ -17,6 +17,6 @@ Airport.create(airport_code: 'GRB')
     start_airport = rand(1..6)
     finish_airport = rand(1..6)
     start = DateTime.now + rand(30)
-    finish = start + rand(1)
+    finish = start + rand(0.05..0.5)
     Flight.create!(from_airport_id: start_airport, to_airport_id: finish_airport, start_datetime: start, end_datetime: finish, flight_duration: (finish - start))
 end
