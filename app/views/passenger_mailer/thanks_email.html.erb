@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your flight has been booked!</h1>
+    <p>
+        Your booking number is: <%#= @booking.id %>.
+    </p>
+    <p>
+      You have successfully booked your flight departing <%#= @booking.flight.from_airport.airport_code %>.<br>
+    </p>
+    <p>
+      To view your booking, just follow this link: <%#= @booking_url %>.
+    </p>
+    <p>Thanks for booking with us and have a great day!</p>
+  </body>
+</html>

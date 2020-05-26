@@ -13,6 +13,7 @@ class BookingsController < ApplicationController
         @booking = @flight.bookings.new(booking_params)
         if @passenger.save
             @booking = @passenger.bookings.build(booking_params)
+            PassengerMailer.thanks_email(@passenger).deliver_now!
             if @booking.save
                 flash[:success] = "Booking saved"
                 redirect_to @booking
@@ -21,8 +22,10 @@ class BookingsController < ApplicationController
     end
 
     def show
-        @booking = Booking.find(params[:id])
-        @passengers = Passenger.where("booking_id = ?", params[:id])
+        @booking_id = params[:id]
+        @booking = Booking.find(@booking_id)
+        @passengers = Passenger.where("booking_id = ?", @booking_id)
+        @flight_id = Booking.find(@booking_id).flight_id
         @flight = Flight.find(@flight_id)
     end
 
